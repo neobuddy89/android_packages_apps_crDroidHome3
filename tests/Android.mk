@@ -23,10 +23,10 @@ LOCAL_SRC_FILES := $(call all-java-files-under, src)
 LOCAL_FULL_LIBS_MANIFEST_FILES := $(LOCAL_PATH)/AndroidManifest-common.xml
 
 LOCAL_SDK_VERSION := current
-LOCAL_MIN_SDK_VERSION := 21
+LOCAL_MIN_SDK_VERSION := 26
 
-LOCAL_PACKAGE_NAME := Launcher3Tests
+LOCAL_PACKAGE_NAME := crDroidHome3Tests
 
-LOCAL_INSTRUMENTATION_FOR := Launcher3
+LOCAL_INSTRUMENTATION_FOR := crDroidHome3
 
 include $(BUILD_PACKAGE)

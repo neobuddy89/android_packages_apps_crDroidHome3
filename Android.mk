@@ -61,9 +61,9 @@ LOCAL_AAPT_FLAGS := \
     --extra-packages android.support.v7.recyclerview
 
 LOCAL_MIN_SDK_VERSION := 26
-LOCAL_PACKAGE_NAME := Launcher3
+LOCAL_PACKAGE_NAME := crDroidHome3
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_OVERRIDES_PACKAGES := Home Launcher2
+LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3
 
 LOCAL_FULL_LIBS_MANIFEST_FILES := $(LOCAL_PATH)/AndroidManifest-common.xml
 
@@ -83,7 +83,7 @@ LOCAL_PROTOC_FLAGS := --proto_path=$(LOCAL_PATH)/protos/ --proto_path=$(LOCAL_PA
 LOCAL_PROTO_JAVA_OUTPUT_PARAMS := enum_style=java
 
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := launcher_proto_lib
+LOCAL_MODULE := crdroidhome3_proto_lib
 LOCAL_IS_HOST_MODULE := true
 LOCAL_STATIC_JAVA_LIBRARIES := host-libprotobuf-java-nano
 

@@ -2,6 +2,7 @@
 <!--
 /**
  * Copyright (c) 2015-2017, Paranoid Android
+ *           (c) 2018, cDroidAndroid Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +18,9 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="crdroidhome_app_name">crDroid Home</string>
+
     <!-- Icon pack -->
     <string name="default_iconpack" translatable="false">Stock</string>
     <string name="default_iconpack_title">Default</string>

@@ -73,25 +73,6 @@ public class SettingsActivity extends Activity implements PreferenceFragment.OnP
         }
 
         @Override
-        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-            menu.add(0, 0, 0, R.string.about_credits)
-                    .setIcon(R.drawable.ic_dialog_alert)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            switch (item.getItemId()) {
-                case 0:
-                    final AboutDialog dialog = new AboutDialog();
-                    showAboutDialog(this, dialog);
-                    return true;
-                default:
-                    return false;
-            }
-        }
-
-        @Override
         public boolean onPreferenceChange(Preference preference, final Object newValue) {
             return false;
         }
@@ -100,15 +81,5 @@ public class SettingsActivity extends Activity implements PreferenceFragment.OnP
         public boolean onPreferenceClick(Preference preference) {
             return false;
         }
-    }
-
-    private static void showAboutDialog(Fragment context, DialogFragment dialog) {
-        FragmentTransaction ft = context.getChildFragmentManager().beginTransaction();
-        Fragment prev = context.getChildFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        dialog.show(ft, "dialog");
     }
 }

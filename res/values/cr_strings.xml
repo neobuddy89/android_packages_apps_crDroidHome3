@@ -43,4 +43,8 @@
     <string name="icon_search">Search for icons</string>
 
     <string name="icon_pack_updated">Your launcher icon pack has been updated, new icons for your apps might be available.</string>
+
+    <!-- Swipe down notifications -->
+    <string name="swipedown_notifications">Swipe down notifications</string>
+    <string name="swipedown_notifications_summary">Swipe down to show notifications and up to close notifications</string>
 </resources>

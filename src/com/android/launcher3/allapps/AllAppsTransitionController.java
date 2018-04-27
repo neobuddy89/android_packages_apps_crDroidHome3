@@ -216,7 +216,7 @@ public class AllAppsTransitionController implements TouchController, SwipeDetect
         }
 
         //Locked means do not use any notification code
-        if (mNotificationState != NotificationState.Locked) {
+        if (mNotificationState != NotificationState.Locked && mLauncher.isSwipeDownEnabled()) {
             if (mProgress < 1f) {
                 //Apps list is being opened, disable notification code
                 mNotificationState = NotificationState.Locked;

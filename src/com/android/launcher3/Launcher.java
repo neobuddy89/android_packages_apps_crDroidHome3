@@ -4180,6 +4180,10 @@ public class Launcher extends BaseActivity
         return Utilities.showSwipeUpIndicator(getApplicationContext());
     }
 
+    public boolean isSwipeDownEnabled() {
+        return Utilities.isSwipeDownEnabled(getApplicationContext());
+    }
+
     private class RotationPrefChangeHandler implements OnSharedPreferenceChangeListener {
 
         @Override

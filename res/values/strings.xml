@@ -366,11 +366,6 @@
     <string name="reset_hidden_apps">Reset all</string>
     <string name="reset_hidden_apps_done">Hidden apps are now available</string>
 
-    <!-- Swipe up indicator -->
-    <string name="show_swipeup_arrow">Swipe up indicator</string>
-    <string name="show_swipeup_arrow_summary">Show the swipe up arrow indicator on top of the dock</string>
-
-
     <string name="pref_show_clock_weather">Home screen date and weather</string>
     <string name="pref_show_clock_weather_both">Show both date and weather</string>
     <string name="pref_show_clock_weather_nothing">Don\'t show</string>

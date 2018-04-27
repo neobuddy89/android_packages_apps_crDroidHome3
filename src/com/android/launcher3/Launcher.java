@@ -415,11 +415,10 @@ public class Launcher extends BaseActivity
         wallpaperColorInfo.setOnThemeChangeListener(this);
 
         mSettingsObserver = new SystemThemeObserver(this.getContentResolver());
-        mSettingsObserver.register("system_ui_theme");
+        mSettingsObserver.register("berry_dark_check");
         mSystemTheme = mSettingsObserver.getSettingInt();
-        boolean forceDark = mSystemTheme == 2;
-        boolean forceLight = mSystemTheme == 1;
-        overrideTheme(wallpaperColorInfo.isDark(), wallpaperColorInfo.supportsDarkText(), forceDark, forceLight);
+        boolean forceDark = mSystemTheme == 1;
+        overrideTheme(wallpaperColorInfo.isDark(), wallpaperColorInfo.supportsDarkText(), forceDark);
 
         super.onCreate(savedInstanceState);
 
@@ -541,7 +540,7 @@ public class Launcher extends BaseActivity
         recreate();
     }
 
-    protected void overrideTheme(boolean isDark, boolean supportsDarkText, boolean forceDark, boolean forceLight) {
+    protected void overrideTheme(boolean isDark, boolean supportsDarkText, boolean forceDark) {
         if (isDark || forceDark) {
             setTheme(R.style.LauncherThemeDark);
         } else if (supportsDarkText) {

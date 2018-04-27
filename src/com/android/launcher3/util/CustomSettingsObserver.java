@@ -19,6 +19,7 @@ package com.android.launcher3.util;
 import android.content.ContentResolver;
 import android.database.ContentObserver;
 import android.os.Handler;
+import android.os.UserHandle;
 import android.provider.Settings;
 
 public interface CustomSettingsObserver {
@@ -59,11 +60,11 @@ public interface CustomSettingsObserver {
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
-            onSettingChanged(Settings.System.getInt(mResolver, mKeySetting, 0));
+            onSettingChanged(Settings.System.getIntForUser(mResolver, mKeySetting, 0, UserHandle.USER_CURRENT));
         }
 
         public int getSettingInt() {
-            return Settings.System.getInt(mResolver, mKeySetting, 0);
+            return Settings.System.getIntForUser(mResolver, mKeySetting, 0, UserHandle.USER_CURRENT);
         }
     }
 }

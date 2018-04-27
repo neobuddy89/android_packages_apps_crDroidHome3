@@ -19,6 +19,7 @@ package com.android.launcher3.util;
 import android.content.ContentResolver;
 import android.database.ContentObserver;
 import android.os.Handler;
+import android.os.UserHandle;
 import android.provider.Settings;
 
 public interface SettingsObserver {
@@ -61,7 +62,7 @@ public interface SettingsObserver {
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
-            onSettingChanged(Settings.Secure.getInt(mResolver, mKeySetting, 1) == 1);
+            onSettingChanged(Settings.Secure.getIntForUser(mResolver, mKeySetting, 1, UserHandle.USER_CURRENT) == 1);
         }
     }
 
@@ -94,7 +95,7 @@ public interface SettingsObserver {
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
-            onSettingChanged(Settings.System.getInt(mResolver, mKeySetting, 1) == 1);
+            onSettingChanged(Settings.System.getIntForUser(mResolver, mKeySetting, 1, UserHandle.USER_CURRENT) == 1);
         }
     }
 }

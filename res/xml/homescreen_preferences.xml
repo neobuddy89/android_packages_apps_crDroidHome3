@@ -20,6 +20,12 @@
         android:defaultValue="true" />
 
     <SwitchPreference
+        android:key="pref_dts"
+        android:title="@string/double_tap_sleep_title"
+        android:summary="@string/double_tap_sleep_summary"
+        android:defaultValue="true" />
+
+    <SwitchPreference
         android:key="pref_bottom_search_bar"
         android:title="@string/bottom_search_bar_title"
         android:summary="@string/bottom_search_bar_summary"

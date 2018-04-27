@@ -366,7 +366,8 @@ public class Workspace extends PagedView
                 new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent event) {
-                pm.goToSleep(event.getEventTime());
+                if (Utilities.isDoubleTap(mLauncher))
+                    pm.goToSleep(event.getEventTime());
                 return true;
             }
         });

@@ -76,6 +76,7 @@ public class HomeScreenActivity extends com.android.launcher3.SettingsActivity i
         private SwitchPreference mGoogleNowPanel;
         private PreferenceScreen mAtGlanceWidget;
         private ListPreference mShowClockWeather;
+        private boolean mShouldRestart = false;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -154,6 +155,9 @@ public class HomeScreenActivity extends com.android.launcher3.SettingsActivity i
 
         @Override
         public void onDestroy() {
+            if (mShouldRestart) {
+                triggerRestart();
+            }
             super.onDestroy();
         }
 
@@ -164,13 +168,13 @@ public class HomeScreenActivity extends com.android.launcher3.SettingsActivity i
                     if (preference instanceof TwoStatePreference) {
                         ((TwoStatePreference) preference).setChecked((boolean) newValue);
                     }
-                    restart(mContext);
+                    mShouldRestart = true;
                     break;
                 case KEY_SHOW_WEATHER_CLOCK:
                     String value = (String) newValue;
                     getDevicePrefs(mContext).edit().putString(KEY_SHOW_WEATHER_CLOCK, value).commit();
                     mShowClockWeather.setValue(value);
-                    restart(mContext);
+                    mShouldRestart = true;
                     break;
                 case Utilities.GRID_COLUMNS:
                 case Utilities.GRID_ROWS:
@@ -178,7 +182,7 @@ public class HomeScreenActivity extends com.android.launcher3.SettingsActivity i
                     if (preference instanceof ListPreference) {
                         ((ListPreference) preference).setValue((String) newValue);
                     }
-                    restart(mContext);
+                    mShouldRestart = true;
                     break;
             }
             return false;
@@ -192,31 +196,17 @@ public class HomeScreenActivity extends com.android.launcher3.SettingsActivity i
             }
             return false;
         }
-    }
 
-    public static void restart(final Context context) {
-        ProgressDialog.show(context, null, context.getString(R.string.state_loading), true, false);
-        new LooperExecutor(LauncherModel.getWorkerLooper()).execute(new Runnable() {
-            @SuppressLint("ApplySharedPref")
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(WAIT_BEFORE_RESTART);
-                } catch (Exception e) {
-                }
-
-                Intent intent = new Intent(Intent.ACTION_MAIN)
-                        .addCategory(Intent.CATEGORY_HOME)
-                        .setPackage(context.getPackageName())
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT);
-                AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                alarmManager.setExact(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 50, pendingIntent);
-
-                android.os.Process.killProcess(android.os.Process.myPid());
-            }
-        });
+        private void triggerRestart() {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pi = PendingIntent.getActivity(mContext, 41, intent,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager manager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+            manager.set(AlarmManager.RTC, java.lang.System.currentTimeMillis() + 1, pi);
+            java.lang.System.exit(0);
+        }
     }
 
     @Override

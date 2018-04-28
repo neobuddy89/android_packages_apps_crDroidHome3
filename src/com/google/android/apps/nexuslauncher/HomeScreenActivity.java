@@ -162,6 +162,14 @@ public class HomeScreenActivity extends com.android.launcher3.SettingsActivity i
         }
 
         @Override
+        public void onPause() {
+            if (mShouldRestart) {
+                triggerRestart();
+            }
+            super.onPause();
+        }
+
+        @Override
         public boolean onPreferenceChange(Preference preference, final Object newValue) {
             switch (preference.getKey()) {
                 case Utilities.BOTTOM_SEARCH_BAR_KEY:
@@ -198,6 +206,7 @@ public class HomeScreenActivity extends com.android.launcher3.SettingsActivity i
         }
 
         private void triggerRestart() {
+            mShouldRestart = false;
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

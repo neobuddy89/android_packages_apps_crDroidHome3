@@ -140,6 +140,7 @@ public final class Utilities {
     public static final String KEY_SHOW_SWIPEUP_ARROW = "pref_show_swipeup_arrow";
     public static final String KEY_SWIPEDOWN_NOTIFICATIONS = "pref_swipedown_notifications";
     public static final String KEY_DOUBLETAP_SLEEP = "pref_dts";
+    public static final String KEY_SHOW_HOTSEAT_PREFERENCE = "pref_hotSeat";
 
     public static final String GRID_COLUMNS = "pref_grid_columns";
     public static final String GRID_ROWS = "pref_grid_rows";
@@ -168,6 +169,11 @@ public final class Utilities {
 
     public static boolean isDoubleTap(Context context) {
         return getPrefs(context).getBoolean(KEY_DOUBLETAP_SLEEP,
+                true);
+    }
+
+    public static boolean isShowHotseat(Context context) {
+        return getPrefs(context).getBoolean(KEY_SHOW_HOTSEAT_PREFERENCE,
                 true);
     }
 

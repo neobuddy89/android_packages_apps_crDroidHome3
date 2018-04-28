@@ -1345,6 +1345,7 @@ public class Launcher extends BaseActivity
         mHotseat = (Hotseat) findViewById(R.id.hotseat);
         if (mHotseat != null) {
             mHotseat.setOnLongClickListener(this);
+            mHotseat.getLayout().setVisibility(Utilities.isShowHotseat(Launcher.this) ? View.VISIBLE : View.GONE);
         }
 
         // Setup the overview panel
@@ -4198,6 +4199,10 @@ public class Launcher extends BaseActivity
             }
             if (Utilities.KEY_SHOW_SWIPEUP_ARROW.equals(key)) {
                 mAllAppsButton.setVisibility(showSwipeUpIndicator() ? View.VISIBLE : View.INVISIBLE);
+            }
+            if (Utilities.KEY_SHOW_HOTSEAT_PREFERENCE.equals(key) && mHotseat != null) {
+                mHotseat.getLayout().setVisibility(Utilities.isShowHotseat(Launcher.this) ? View.VISIBLE : View.GONE);
+                mDeviceProfile.layout(Launcher.this, false /* notifyListeners */);
             }
         }
     }
